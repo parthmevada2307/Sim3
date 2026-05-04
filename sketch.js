@@ -172,7 +172,7 @@ function buildLayout() {
 }
 
 function setup() {
-  window.scrollTo(0, 0);
+  setTimeout(() => { document.documentElement.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
   createCanvas(windowWidth, windowHeight);
   pixelDensity(1);
   textFont('Times New Roman');
@@ -184,6 +184,7 @@ function setup() {
 
   resetButton = createButton("Reset");
   resetButton.position(width / 2 - 30, max(90 * layout.scale, 70));
+  resetButton.elt.addEventListener('touchstart', function(e) { e.preventDefault(); resetSimulation(); }, { passive: false });
   resetButton.elt.addEventListener('click', resetSimulation);
 }
 
@@ -613,3 +614,5 @@ function averageColor(colors) {
   }
   return base;
 }
+
+
