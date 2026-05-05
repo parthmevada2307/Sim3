@@ -615,4 +615,13 @@ function averageColor(colors) {
   return base;
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  buildLayout();
+  
+  if (!litmus.dragging && !isLitmusInLiquid) {
+    litmus.x = layout.litmusInitX;
+    litmus.y = layout.litmusInitY;
+  }
+}
 
